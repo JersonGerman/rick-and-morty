@@ -3,10 +3,12 @@ import MortyInfo from './MortyInfo';
 
 const MortyList = ({mortys}) => {
     return (
-        <div>
+        <div className='Morty-List mt-5'>
             {
                 mortys?.map(residents =>(
-                    <MortyInfo mortyUrl={residents} key={residents} />
+                    <div className="Card" key={residents}>
+                        <MortyInfo mortyUrl={residents} />
+                    </div>
                    /*  <div key={residents}  >
                         {residents}
                     </div> */

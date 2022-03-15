@@ -12,14 +12,13 @@ const MortyInfo = ({mortyUrl}) => {
 
     return (
         
-        <div >
-            <img src={card.image} alt="" />
-            <p>{card.name}</p>
-            <p>origin:{card.origin?.name}</p>
-            <p>Episodes where appear:{card.episode?.length}</p>
-            
-            
-            {/* {mortyUrl} */}
+        <div className='Morty-Info card'>
+            <img src={card.image} alt={card.name} className="card-img-top"/>
+            <div className='card-body'>
+                <p>{card.name}</p>
+                <p>origin:{card.origin?.name}</p>
+                <p>Episodes where appear:{card.episode?.length}</p>
+            </div>
         </div>
     );
 };

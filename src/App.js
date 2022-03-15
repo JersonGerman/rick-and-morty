@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import MortyList from './components/MortyList';
 import SearchBox from './components/SearchBox';
+import UbicationDetail from './components/UbicationDetail';
 
 function App() {
 
@@ -13,23 +14,18 @@ function App() {
     axios.get(`https://rickandmortyapi.com/api/location/${random}`)
       .then(res => setUbication(res.data))
   }, [])
-
-  console.log(ubication)
+ 
+  console.log("ubicacion",ubication)
   return (
 
-
-
-
     <div className="App">
-
-
+      <div className='Cabecera'>
+        <div className='Overlay'></div>
+      </div>
       <SearchBox setUbication={setUbication} />
 
-        <h1>{ubication.name}</h1>
-        <p><b>Type: </b>{ubication.type}</p>
-        <p><b>Dimension: </b>{ubication.dimension}</p>
-        <p><b>Population: </b>{ubication.residents?.length}</p>
-  
+      <UbicationDetail ubication={ubication}/>
+      
       <MortyList mortys={ubication.residents} />
 
     </div>
