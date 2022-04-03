@@ -52,7 +52,7 @@
 
 .Search-Box{
   width: 25%;
-  top: 54%;
+  top: 60%;
   z-index: 20;
   
   
@@ -76,12 +76,15 @@
   color: #fff;
   border: 1px solid #fff;
   transition: .3s all ease-in-out;
+  width: 50%;
 }
 .btn-hover:hover{
   letter-spacing: 3px;
   background-color: #fff;
   color: #021401;
   border: 1px solid #fff;
+  width: 100%;
+  transform: translateX(-150px);
 }
 .btn-hover:focus{
   background-color: #fff;
@@ -90,20 +93,38 @@
   border-style: none;
   border-color: #fff;
   border-width: 0;
+  width: 100%;
 }
 .Ubication-Detail{
   width: 100%;
   background-color: #021401;
   z-index: 15;
   justify-content: center;
+  flex-wrap: wrap;
+}
+.Ubication-Detail p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Ubication-Detail h1{
+  font-size: 32px;
+}
+.Ubication-Detail :nth-child(2) {
+  width: 25%;
+}
+.Ubication-Detail :nth-child(3) {
+  width: 50%;
+}
+.Ubication-Detail :nth-child(4) {
+  width: 25%;
 }
 
 .font-indie, b{
   font-family: 'Indie Flower', cursive;
   font-size: 24px;
-  letter-spacing: 1px;
-
-
+  letter-spacing: 3px;
+ 
 }
 
 @media (max-width: 768px){
@@ -125,11 +146,9 @@
 
 
 .Morty-List{
-  /* margin: 1rem; */
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 0.75rem 0;
   background-color: #000;
   
 }
@@ -141,13 +160,30 @@
   display: inline-block;
   width: 70%;
   margin: 1rem 0;
-  border: 1px solid #ccc;
+  border: 1px solid #444;
   border-radius: 10px;
   overflow: hidden;
   background-color: #021401;
-  box-shadow: 5px 5px 10px #085204;
-
+  position: relative;
+  /* box-shadow: 5px 5px 10px #085204; */
+  transition: .5s all ease-in-out;
 }
+.Morty-Info:hover{
+  transform: scale(1.05);
+}
+.header-overlay{
+  position: absolute;
+  width: 100%;
+  height: 27px;
+  background-color: #021401cb;
+  text-align: start;
+  padding: 0 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
 .button-Search{
   transform: scale(1.1);
 }

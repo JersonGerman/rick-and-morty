@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 
 const SearchBox = ({setUbication}) => {
@@ -6,15 +5,9 @@ const SearchBox = ({setUbication}) => {
     const [ ubicationId, setubicationId ] = useState("")
 
     const searchUbication = () => {
-
-        //hacemos la peticion con el id que pida el usuario en el input
-        axios.get(`https://rickandmortyapi.com/api/location/${ubicationId}`)
-            .then(res => setUbication(res.data))
-            .catch(err => console.log(err.response));
+        setUbication(ubicationId);
     }
 
-    console.log("height",window.innerHeight)
-    console.log("width",window.innerHeight)
 
     return (
 
@@ -31,7 +24,7 @@ const SearchBox = ({setUbication}) => {
                 />
                 <button 
                     onClick={searchUbication} 
-                    className="button-Search col-2 w-50 rounded-pill  fw-bold ms-1 position-absolute start-50 font-indie btn-hover">
+                    className="button-Search col-2 rounded-pill  fw-bold ms-1 position-absolute start-50 font-indie btn-hover">
                     Search
                 </button>
             </div>

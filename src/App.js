@@ -1,33 +1,50 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import { useResidents } from './hooks/useResidents';
+import {LocationInfo, SearchBox, ResidentsList, Pagination} from "./components";
 import './App.css';
-import MortyList from './components/MortyList';
-import SearchBox from './components/SearchBox';
-import UbicationDetail from './components/UbicationDetail';
 
 function App() {
+  
+  const [currentPage, setCurrentPage] = useState(0);
+  const [nameResident, setNameResident] = useState([]);
 
-  const [ ubication, setUbication ] = useState({})
+  const {isLoading, location, getLocation} = useResidents();
 
-  useEffect(() => {
-    const random = Math.floor(Math.random() * 126) +1
-    axios.get(`https://rickandmortyapi.com/api/location/${random}`)
-      .then(res => setUbication(res.data))
-  }, [])
- 
-  console.log("ubicacion",ubication)
+  const filteredResidents = () => { 
+    return location.residents?.slice(currentPage,currentPage+4);
+  }
+
+  useEffect(() =>{
+    console.log(location.residents?.length )
+  },[location])
+
+  const nextPage = () => {
+    if(location.residents?.length > currentPage + 4)
+        setCurrentPage(currentPage + 4);
+  }
+  const previusPage = () => {
+    if(currentPage > 0)
+      setCurrentPage(currentPage - 4);  
+  }
+  
+
   return (
 
     <div className="App">
       <div className='Cabecera'>
         <div className='Overlay'></div>
       </div>
-      <SearchBox setUbication={setUbication} />
+      <SearchBox setUbication={getLocation} />
 
-      <UbicationDetail ubication={ubication}/>
-      
-      <MortyList mortys={ubication.residents} />
-
+      <LocationInfo ubication={location}/>
+      <Pagination nextPage={nextPage} previusPage={previusPage} residentsSearch={location.residents} />
+    
+      <ResidentsList 
+        loading={isLoading} 
+        residents={filteredResidents} 
+        setNameResident={setNameResident} 
+        nameResident={nameResident}  
+      />
     </div>
   );
 }
